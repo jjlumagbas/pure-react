@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 
 
 function Hello() {
-  let hour = 5;
+  let hour = 16;
   return (
-    <span>{(hour < 12 ? 'Good morning' : 'Hello')}</span>
+    <span>
+      {(hour < 12) && 'Good Morning'}
+      {(hour >= 12) && 'Hello'}
+    </span>
   );
 }
 
