@@ -14,9 +14,18 @@ function World() {
   );
 }
 
+function Name() {
+  const name = "JJ";
+  return (
+    <span>{name}</span>
+  )
+}
+
 function HelloWorld() {
   return (
-    <div><Hello/> <World/></div>
+    <>
+        <Hello/> <Name/>
+    </>
   );
   // return React.createElement(
   //   'div',
@@ -25,6 +34,7 @@ function HelloWorld() {
   //   'World'
   // );
 }
+
 
 ReactDOM.render(
   <HelloWorld/>,
