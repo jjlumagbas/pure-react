@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-function MyThing() {
+function Book() {
   return (
     <div className='book'>
       <div className='title'>
@@ -23,7 +23,26 @@ function MyThing() {
   );
 }
 
+function BookJsx() {
+  return React.createElement(
+    'div',
+    { className: 'book' },
+    React.createElement(
+      'div',
+      { className: 'title' },
+      'The Title'
+    ),
+    React.createElement(
+      'ul',
+      { className: 'stats' },
+      React.createElement( 'li', { className: 'rating' }, '5 stars'),
+      React.createElement( 'li', { className: 'isbn' }, '12-345678910')
+    )
+  )
+}
+
+
 ReactDOM.render(
-  <MyThing/>,
+  <><Book/><BookJsx/></>,
   document.getElementById('root')
 );

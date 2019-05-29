@@ -41,6 +41,6 @@ function HelloWorld() {
 
 
 ReactDOM.render(
-  <HelloWorld/>,
+  <><HelloWorld/>,
   document.querySelector('#root')
 );
