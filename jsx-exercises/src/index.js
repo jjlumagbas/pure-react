@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function MyThing() {
+  return (
+    <div className='book'>
+      <div className='title'>
+        The Title
+      </div>
+      <div className='author'>
+        The Author
+      </div>
+      <ul className='stats'>
+        <li className='rating'>
+          5 stars
+        </li>
+        <li className='isbn'>
+          12-345678910
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <MyThing/>,
+  document.getElementById('root')
+);
