@@ -56,11 +56,30 @@ function Greeting() {
   );
 }
 
+function Data() {
+  return <td>Eggs</td>;
+}
+
+function Table() {
+  return (
+    <table>
+      <tbody>
+        <tr>
+          <Data/>
+          <Data/>
+          <Data/>
+        </tr>
+      </tbody>
+    </table>
+  );
+}
+
 ReactDOM.render(
   <>
     <Greeting/>
     <Book/>
     <BookJsx/>
+    <Table/>
   </>,
   document.getElementById('root')
 );
