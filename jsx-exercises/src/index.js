@@ -41,8 +41,22 @@ function BookJsx() {
   )
 }
 
+function Greeting() {
+  let username = 'root';  // Hello root
+  // let username = undefined; // Not logged in
+  // let username = null; // Not logged in
+  // let username = false; // Not logged in
+  return (
+    <span>{ username ? 'Hello ' + username : "Not logged in" }</span>
+    // I don't like the below convention, prefer above
+    // <span>
+    //   { username && 'Hello ' + username }
+    //   { !username && 'Not logged in' }
+    // </span>
+  );
+}
 
 ReactDOM.render(
-  <><Book/><BookJsx/></>,
+  <><Greeting/><Book/><BookJsx/></>,
   document.getElementById('root')
 );
