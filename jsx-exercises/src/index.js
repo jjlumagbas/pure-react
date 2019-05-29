@@ -57,6 +57,10 @@ function Greeting() {
 }
 
 ReactDOM.render(
-  <><Greeting/><Book/><BookJsx/></>,
+  <>
+    <Greeting/>
+    <Book/>
+    <BookJsx/>
+  </>,
   document.getElementById('root')
 );
