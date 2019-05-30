@@ -1,92 +1,109 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import moment from 'moment';
 
-function Avatar() {
+function Avatar({ hash }) {
+  const url = `https://www.gravatar.com/avatar/${hash}`;
   return (
     <img
-      src="https://www.gravatar.com/avatar/nothing"
+      src={url}
       className="avatar"
       alt="avatar" />
   );
 }
 
-function NameWithHandle() {
+function NameWithHandle({ author }) {
+  const { name, handle } = author;
   return (
     <span className="name-with-handle">
-      <span className="name">Your Name</span>
-      <span className="handle">@yourhandle</span>
+      <span className="name">{name}</span>
+      <span className="handle">@{handle}</span>
     </span>
   );
 }
 
-const Time = () => (
-  <time className="time">3h ago</time>
-);
+const Time = ({ time }) => {
+  const timeString = moment(time).fromNow();
+  return (
+    <time className="time">{timeString}</time>
+  );
+}
 
 const ReplyButton = () => (
   <button>
-    <i class="fas fa-reply" aria-hidden="true"> </i>
-    <span class="sr-only">Reply</span>
+    <i className="fas fa-reply" aria-hidden="true"> </i>
+    <span className="sr-only">Reply</span>
   </button>
 );
 
-const RetweetButton = () => (
+const Count = ({ count }) =>
+  count > 0 ? <span className="count">{count}</span> : null;
+
+
+const RetweetButton = ({ count }) => (
   <button>
-    <i class="fas fa-retweet" aria-hidden="true"> </i>
-    <span class="sr-only">Retweet</span>
+    <i className="fas fa-retweet" aria-hidden="true"> </i>
+    <span className="sr-only">Retweet</span>
+    <Count count={count} />
   </button>
 );
 
-const LikeButton = () => (
+const LikeButton = ({ count }) => (
   <button>
-    <i class="fas fa-heart" aria-hidden="true"> </i>
-    <span class="sr-only">Like</span>
+    <i className="fas fa-heart" aria-hidden="true"> </i>
+    <span className="sr-only">Like</span>
+    <Count count={count} />
   </button>
 );
 
 const MoreOptionsButton = () => (
   <button>
-    <i class="fas fa-ellipsis-h" aria-hidden="true"> </i>
-    <span class="sr-only">More Options</span>
+    <i className="fas fa-ellipsis-h" aria-hidden="true"> </i>
+    <span className="sr-only">More Options</span>
   </button>
 );
 
-function Message() {
+function Message({ text }) {
   return (
-    <p className="message">
-      This is less than 140 characters.
-    </p>
+    <p className="message">{text}</p>
   );
 }
 
-function Actions() {
-  return (
-    <ul className="actions">
-      <li><ReplyButton/></li>   
-      <li><RetweetButton/></li>   
-      <li><LikeButton/></li>   
-      <li><MoreOptionsButton/></li>   
-    </ul>
-  );
-}
-
-function Tweet() {
+function Tweet({ tweet }) {
   return (
     <article className="tweet">
-      <Avatar/>
+      <Avatar hash={tweet.gravatar} />
       <section className="content">
-        <NameWithHandle/><Time/>
-        <Message/>
+        <NameWithHandle author={tweet.author} />
+        <Time time={tweet.timestamp} />
+        <Message text={tweet.message} />
         <footer className="buttons">
-          <Actions/>
+          <ul className="actions">
+            <li><ReplyButton /></li>
+            <li><RetweetButton count={tweet.retweets} /></li>
+            <li><LikeButton count={tweet.likes} /></li>
+            <li><MoreOptionsButton /></li>
+          </ul>
         </footer>
       </section>
     </article>
   );
 }
 
+var testTweet = {
+  message: "I neither know nor I think I know.",
+  gravatar: "1f38e8410cb0596d418bab5e61366613",
+  author: {
+    handle: "catperson",
+    name: "IAMA Cat Person"
+  },
+  likes: 2,
+  retweets: 12293,
+  timestamp: "2016-07-30 21:24:37"
+};
+
 ReactDOM.render(
-  <Tweet/>, 
+  <Tweet tweet={testTweet} />,
   document.querySelector('#root')
 );

@@ -68,3 +68,11 @@ p {
 .actions button:hover {
   color: #1da1f2;
 }
+
+.actions button i {
+  margin-right: .2em;
+}
+
+.count {
+  font-weight: bold;
+}
