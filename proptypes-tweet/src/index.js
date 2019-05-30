@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 function Avatar({ hash }) {
   const url = `https://www.gravatar.com/avatar/${hash}`;
@@ -13,6 +14,10 @@ function Avatar({ hash }) {
   );
 }
 
+Avatar.propTypes = {
+  hash: PropTypes.string
+};
+
 function NameWithHandle({ author }) {
   const { name, handle } = author;
   return (
@@ -23,12 +28,23 @@ function NameWithHandle({ author }) {
   );
 }
 
+NameWithHandle.propTypes = {
+  author: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    handle: PropTypes.string.isRequired
+  }).isRequired
+};
+
 const Time = ({ time }) => {
   const timeString = moment(time).fromNow();
   return (
     <time className="time">{timeString}</time>
   );
 }
+
+Time.propTypes = {
+  time: PropTypes.string
+};
 
 const ReplyButton = () => (
   <button>
@@ -37,8 +53,13 @@ const ReplyButton = () => (
   </button>
 );
 
+
 const Count = ({ count }) =>
   count > 0 ? <span className="count">{count}</span> : null;
+
+Count.propTypes = {
+  count: PropTypes.number
+};
 
 
 const RetweetButton = ({ count }) => (
@@ -49,6 +70,11 @@ const RetweetButton = ({ count }) => (
   </button>
 );
 
+RetweetButton.propTypes = {
+  count: PropTypes.number
+};
+
+
 const LikeButton = ({ count }) => (
   <button>
     <i className="fas fa-heart" aria-hidden="true"> </i>
@@ -56,6 +82,10 @@ const LikeButton = ({ count }) => (
     <Count count={count} />
   </button>
 );
+
+LikeButton.propTypes = {
+  count: PropTypes.number
+};
 
 const MoreOptionsButton = () => (
   <button>
@@ -69,6 +99,11 @@ function Message({ text }) {
     <p className="message">{text}</p>
   );
 }
+
+Message.propTypes = {
+  text: PropTypes.string
+};
+
 
 function Tweet({ tweet }) {
   return (
@@ -91,8 +126,19 @@ function Tweet({ tweet }) {
   );
 }
 
+Tweet.propTypes = {
+  tweet: PropTypes.shape({
+    message: PropTypes.string,
+    gravatar: PropTypes.string,
+    author: PropTypes.object,
+    likes: PropTypes.number,
+    retweets: PropTypes.number,
+    timestamp: PropTypes.string
+  })
+}
+
 var testTweet = {
-  message: "I neither know nor I think I know.",
+  message: "I neither know nor think I know.",
   gravatar: "1f38e8410cb0596d418bab5e61366613",
   author: {
     handle: "catperson",
