@@ -29,6 +29,5 @@ const addr1 = {
   zip: 78539
 };
 
-console.log(addr1);
 
 ReactDOM.render(<AddressLabel address={addr1} />, document.getElementById('root'));
