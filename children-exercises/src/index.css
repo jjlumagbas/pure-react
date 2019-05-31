@@ -35,3 +35,20 @@ html {
   margin-right: 1em;
 }
 
+.dialog {
+  border: thin solid gray;
+
+  max-width: 500px;
+  padding: 1em;
+}
+
+.dialog footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  padding: .8em 1em;
+  font-size: .8em;
+  border-radius: 5px;
+}
