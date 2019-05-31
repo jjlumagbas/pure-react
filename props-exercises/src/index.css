@@ -12,6 +12,43 @@ code {
     monospace;
 }
 
+p {
+  margin: 0;
+}
+
 .address {
   line-height: 1.3em;
+}
+
+.envelope, .stamp {
+  border-style: solid;
+  border-width: thin;
+  border-color: darkgray;
+}
+
+.envelope {
+  width: 550px;
+  padding: .5em;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr 2fr;
+}
+
+.envelope-from {
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+.envelope-to {
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+
+.stamp {
+  width: 40px;
+  height: 50px;
+
+  grid-column-start: 3;
+  justify-self: end;
 }
