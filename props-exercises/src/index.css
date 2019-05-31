@@ -29,6 +29,7 @@ p {
 .envelope {
   width: 550px;
   padding: .5em;
+  margin-bottom: 50px;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -51,4 +52,58 @@ p {
 
   grid-column-start: 3;
   justify-self: end;
+}
+
+.credit-card {
+  width: 400px;
+  background-color: navy;
+  color: white;
+  border-radius: 20px;
+
+
+  padding: 1em;
+
+  display: grid;
+  grid-template-columns: 1fr min-content 2fr;
+  grid-template-rows: 3fr 1fr .5fr 1fr 1fr;
+}
+
+.bank {
+  grid-column: span 3;
+  justify-self: end;
+
+
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.card-num {
+  grid-column: span 3;
+  justify-self: center;
+
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.cvv {
+  grid-column: span 3;
+
+  font-size: .8em;
+}
+
+.valid {
+  margin-right: 1em;
+  grid-column-start: 2;
+  text-transform: uppercase;
+  font-size: .5em;
+}
+
+.name {
+  grid-column: span 3;
+
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-weight: bold;
 }
