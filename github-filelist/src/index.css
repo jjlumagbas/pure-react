@@ -70,6 +70,7 @@ h2.filename {
 
 
 .fileicon {
+  width: var(--space-normal);
   color: var(--color-accent);
   margin-right: var(--space-small);
 }
