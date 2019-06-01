@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import './index.css';
 
 function FileIcon({ file }) {
@@ -27,13 +28,24 @@ function CommitMessage({ commit }) {
   );
 }
 
+const Time = ({ time }) => {
+  const timeString = moment(time).fromNow();
+  return (
+    <time className="time" datetime={time}>{timeString}</time>
+  );
+}
+
+Time.propTypes = {
+  time: PropTypes.string
+};
+
 
 function FileListItem({ file }) {
   return (
     <li className='filelist-item'>
       <FileName file={file} />
       <CommitMessage commit={file.commit} />
-      <p className='time'>2 days ago</p>
+      <Time time={file.lastUpdated} />
     </li>
   );
 }
@@ -44,7 +56,8 @@ FileListItem.propTypes = {
     type: PropTypes.oneOf(['file', 'folder']).isRequired,
     commit: PropTypes.shape({
       message: PropTypes.string.isRequired
-    })
+    }),
+    lastUpdated: PropTypes.string.isRequired
   })
 };
 
@@ -69,7 +82,8 @@ const file1 = {
   type: 'folder',
   commit: {
     message: 'Close #1689, Replace es3ify with Babel ES3 transforms (#1688)'
-  }
+  },
+  lastUpdated: '2016-07-30 21:24:37'
 }
 
 const file2 = {
@@ -77,7 +91,8 @@ const file2 = {
   type: 'file',
   commit: {
     message: 'Update doc to use test with Enzyme (#1692)'
-  }
+  },
+  lastUpdated: '2016-07-30 21:24:37'
 }
 
 const files = [file1, file2];
