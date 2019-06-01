@@ -21,42 +21,66 @@ function FileName({ file }) {
   );
 }
 
+function CommitMessage({ commit }) {
+  return (
+    <p>{commit.message}</p>
+  );
+}
+
 
 function FileListItem({ file }) {
   return (
-    <article className='filelist-item'>
+    <li className='filelist-item'>
       <FileName file={file} />
-      <p>Close #13784</p>
-      <footer className='time'>2 days ago</footer>
-    </article>
+      <CommitMessage commit={file.commit} />
+      <p className='time'>2 days ago</p>
+    </li>
   );
 }
 
 FileListItem.propTypes = {
   file: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(['file', 'folder']).isRequired
+    type: PropTypes.oneOf(['file', 'folder']).isRequired,
+    commit: PropTypes.shape({
+      message: PropTypes.string.isRequired
+    })
   })
 };
 
-function FileList() {
+function FileList({ files }) {
+  const listItems = files.map(file =>
+    <FileListItem key={file.name} file={file} />
+  );
+
   return (
-    <section className='filelist'>
-      <FileListItem file={file1} />
-      <FileListItem file={file2} />
-    </section>
+    <ul className='filelist'>
+      {listItems}
+    </ul>
   )
+}
+
+FileList.propTypes = {
+  files: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 const file1 = {
   name: 'source',
-  type: 'folder'
+  type: 'folder',
+  commit: {
+    message: 'Close #1689, Replace es3ify with Babel ES3 transforms (#1688)'
+  }
 }
 
 const file2 = {
   name: 'index.html',
-  type: 'file'
+  type: 'file',
+  commit: {
+    message: 'Update doc to use test with Enzyme (#1692)'
+  }
 }
 
-ReactDOM.render(<FileList />, document.getElementById('root'));
+const files = [file1, file2];
+
+ReactDOM.render(<FileList files={files} />, document.getElementById('root'));
 
