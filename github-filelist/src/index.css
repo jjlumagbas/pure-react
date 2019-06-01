@@ -1,3 +1,25 @@
+:root {
+  --color-accent: #3970C6;
+  --color-gray: gray;
+  --font-size-body: 1em;
+  --border: thin solid lightgray;
+
+  --space-normal: 1em;
+  --space-small: .5em;
+  --space-tiny: .35em;
+
+  --border-radius-small: 4px;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,9 +27,53 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: var(--color-gray);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h2, p {
+  margin: 0;
+}
+
+a:link {
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+.filelist {
+  border: var(--border);
+  margin: var(--space-normal);
+}
+
+.filelist:last-child {
+  border-bottom: none;
+}
+
+
+.filelist-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  padding: var(--space-tiny) var(--space-normal);
+  border-bottom: var(--border);
+}
+
+h2.filename {
+  font-size: var(--font-size-body);
+  font-weight: normal;
+}
+
+
+.fileicon {
+  color: var(--color-accent);
+  margin-right: var(--space-small);
+}
+
+.time {
+  text-align: right;
 }
