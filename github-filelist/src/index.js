@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import Time from './time';
 import './index.css';
 
 function FileIcon({ file }) {
@@ -27,18 +27,6 @@ function CommitMessage({ commit }) {
     <p>{commit.message}</p>
   );
 }
-
-const Time = ({ time }) => {
-  const timeString = moment(time).fromNow();
-  return (
-    <time className="time" datetime={time}>{timeString}</time>
-  );
-}
-
-Time.propTypes = {
-  time: PropTypes.string
-};
-
 
 function FileListItem({ file }) {
   return (
@@ -77,25 +65,32 @@ FileList.propTypes = {
   files: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-const file1 = {
-  name: 'source',
-  type: 'folder',
-  commit: {
-    message: 'Close #1689, Replace es3ify with Babel ES3 transforms (#1688)'
+const files = [
+  {
+    name: 'source',
+    type: 'folder',
+    commit: {
+      message: 'Close #1689, Replace es3ify with Babel ES3 transforms (#1688)'
+    },
+    lastUpdated: '2018-02-01 05:04:31'
   },
-  lastUpdated: '2016-07-30 21:24:37'
-}
-
-const file2 = {
-  name: 'index.html',
-  type: 'file',
-  commit: {
-    message: 'Update doc to use test with Enzyme (#1692)'
+  {
+    name: 'index.html',
+    type: 'file',
+    commit: {
+      message: 'Update doc to use test with Enzyme (#1692)'
+    },
+    lastUpdated: '2019-01-19 20:15:42'
   },
-  lastUpdated: '2016-07-30 21:24:37'
-}
-
-const files = [file1, file2];
+  {
+    name: 'index.css',
+    type: 'file',
+    commit: {
+      message: 'Update doc to use test with Enzyme (#1692)'
+    },
+    lastUpdated: '2019-05-30 22:25:58'
+  }
+];
 
 ReactDOM.render(<FileList files={files} />, document.getElementById('root'));
 
