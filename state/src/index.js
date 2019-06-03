@@ -2,22 +2,49 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function handleAction(event) {
-  console.log('child did:', event);
+class CountingParent extends React.Component {
+  state = {
+    actionCount: 0
+  }
+
+  handleAction = (action) => {
+    console.log('Child says', action);
+
+    this.setState({
+      actionCount: this.state.actionCount + 1
+    });
+  }
+
+  reset = () => {
+    this.setState({
+      actionCount: 0
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <Child onAction={this.reset}>Reset</Child>
+        <Child onAction={this.handleAction}>Click me!</Child>
+        <p>Clicked {this.state.actionCount} times</p>
+      </div>
+    );
+  }
 }
 
-function Parent() {
+
+function Child({ onAction, children }) {
   return (
-    <Child onAction={handleAction} />
+    <button onClick={onAction}>{children}</button>
   );
 }
 
-function Child({ onAction }) {
-  return (
-    <button onClick={onAction}>
-      Click Me!
-    </button>
-  );
-}
+const Page = () => (
+  <div>
+    <CountingParent />
+    <CountingParent />
+    <CountingParent />
+  </div>
+);
 
-ReactDOM.render(<Parent />, document.getElementById('root'));
+ReactDOM.render(<Page />, document.getElementById('root'));
