@@ -24,12 +24,13 @@ class House extends React.Component {
 
 
   render() {
+    const lights = Object.keys(this.state).map(key =>
+      <Light onAction={this.toggleLight(key)} turnedOn={this.state[key]} key={key}>{key}</Light>
+    );
+
     return (
       <ul>
-        <Light onAction={this.toggleLight('kitchen')} turnedOn={this.state.kitchen}>Kitchen</Light>
-        <Light onAction={this.toggleLight('bathroom')} turnedOn={this.state.bathroom}>Bathroom</Light>
-        <Light onAction={this.toggleLight('livingRoom')} turnedOn={this.state.livingRoom}>Living Room</Light>
-        <Light onAction={this.toggleLight('bedroom')} turnedOn={this.state.bedroom}>Bedroom</Light>
+        {lights}
       </ul>
     );
   }
